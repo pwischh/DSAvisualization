@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Visualization</title>
+    <script src="two.min.js"></script>
+    <script src="navbarButtons.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="badge">DSA Visualization</div>
+        <div class="navbar-buttons">
+            <div class="dropdown">
+                <div class="navbar-button-container">
+                    <button>Data Structures</button>
+                </div>
+                <div class="dropdown-content">
+                    <button data-panel="stack-panel" data-vis="stack-vis">Stack</button>
+                    <button data-panel="queue-panel" data-vis="queue-vis">Queue</button>
+                    <button data-panel="singly-linked-list-panel" data-vis="singly-linked-list-vis">Singly Linked List</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <div class="navbar-button-container">
+                    <button>Sorting</button>
+                </div>
+                <div class="dropdown-content">
+                    <button>link 3</button>
+                    <button>link 4</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <div class="navbar-button-container">
+                    <button>Graphs</button>
+                </div>
+                <div class="dropdown-content">
+                    <button>link 5</button>
+                    <button>link 6</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <div class="navbar-button-container">
+                    <button>Misc</button>
+                </div>
+                <div class="dropdown-content">
+                    <button>link 7</button>
+                    <button>link 8</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-container">
+        <div class="visualization">
+            <div data-vis="stack-vis" class="stack-vis vis vis-open">
+                <script src="stack.js" defer></script>
+            </div>
+            <div class="queue-vis vis">queue</div>
+            <div class="singly-linked-list-vis vis">Linked list</div>
+        </div>
+        <div class="settings-panel-toggle-container">
+            <button class="settings-panel-toggle" type="button">
+                <span class="sp-icon-open">&lt</span>
+                <span class="sp-icon-close">&gt</span>
+            </button>
+        </div>
+        <div class="settings-panel">
+            <div class="panel stack-panel panel-open">
+                <div class="header-container">
+                    <h2>Stack</h2>
+                </div>
+                <div class="stack-panel-content-container">
+                    <div class="push-input-container">
+                        <input type="text" class="push-input" placeholder="Insert value to push" maxlength="5">
+                        <button class="push-button">Push</button>
+                    </div>
+                    <div class="pop-container">
+                        <button class="pop-button">Pop</button>
+                        <p class="pop-info stack-info"></p>
+                    </div>
+                    <div class="peek-container">
+                        <button class="peek-button">Peek</button>
+                        <p class="peek-info stack-info"></p>
+                    </div>
+                    <div class="isempty-container">
+                        <button class="isempty-button">isEmpty</button>
+                        <p class="isempty-info stack-info"></p>
+                    </div>
+                    <div class="reset-container">
+                        <button class="reset-button">Reset</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel queue-panel">queue panel</div>
+            <div class="panel singly-linked-list-panel">linked list panel</div>
+        </div>
+        <script>
+            document.querySelector(".settings-panel-toggle").addEventListener("click", function(){
+                document.querySelector(".content-container").classList.toggle("settings-panel-closed")
+            })
+        </script>
+    </div>
+</body>
+</html>
