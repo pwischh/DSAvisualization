@@ -1,3 +1,9 @@
+<!--https://pwischh.github.io/DSAvisualization-->
+<!--ToDo:
+    1. Implement panning and zooming (two.js examples) for each visualization. could then remove svg resizing
+    2. long-term: beautify UI
+    3. Figure out what to do when there's a bunch of instances of two and a lot of objects
+    4. Animations and hover details on Two objects-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +12,7 @@
     <title>DSA Visualization</title>
     <script src="two.min.js"></script>
     <script src="navbarButtons.js" defer></script>
+    <script src="datastructures/cell.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -53,10 +60,12 @@
     </div>
     <div class="content-container">
         <div class="visualization">
-            <div data-vis="stack-vis" class="stack-vis vis vis-open">
-                <script src="stack.js" defer></script>
+            <div id="stack" class="stack-vis vis vis-open">
+                <script src="datastructures/stack.js" defer></script>
             </div>
-            <div class="queue-vis vis">queue</div>
+            <div id="queue" class="queue-vis vis">
+                <script src="datastructures/queue.js" defer></script>
+            </div>
             <div class="singly-linked-list-vis vis">Linked list</div>
         </div>
         <div class="settings-panel-toggle-container">
@@ -74,25 +83,48 @@
                     <div class="push-input-container">
                         <input type="text" class="push-input" placeholder="Insert value to push" maxlength="5">
                         <button class="push-button">Push</button>
+                        <p class="push-info info"></p>
                     </div>
                     <div class="pop-container">
                         <button class="pop-button">Pop</button>
-                        <p class="pop-info stack-info"></p>
+                        <p class="pop-info info"></p>
                     </div>
                     <div class="peek-container">
                         <button class="peek-button">Peek</button>
-                        <p class="peek-info stack-info"></p>
+                        <p class="peek-info info"></p>
                     </div>
-                    <div class="isempty-container">
-                        <button class="isempty-button">isEmpty</button>
-                        <p class="isempty-info stack-info"></p>
+                    <div class="stack-isempty-container">
+                        <button class="stack-isempty-button">isEmpty</button>
+                        <p class="stack-isempty-info info"></p>
                     </div>
-                    <div class="reset-container">
-                        <button class="reset-button">Reset</button>
+                    <div class="stack-reset-container">
+                        <button class="stack-reset-button">Reset</button>
                     </div>
                 </div>
             </div>
-            <div class="panel queue-panel">queue panel</div>
+            <div class="panel queue-panel">
+                <div class="header-container">
+                    <h2>Queue</h2>
+                </div>
+                <div class="queue-panel-content-container">
+                    <div class="enqueue-input-container">
+                        <input type="text" class="enqueue-input" placeholder="Insert value to enqueue" maxlength="5">
+                        <button class="enqueue-button">Enqueue</button>
+                        <p class="enqueue-info info"></p>
+                    </div>
+                    <div class="dequeue-container">
+                        <button class="dequeue-button">Dequeue</button>
+                        <p class="dequeue-info info"></p>
+                    </div>
+                    <div class="queue-isempty-container">
+                        <button class="queue-isempty-button">isEmpty</button>
+                        <p class="queue-isempty-info info"></p>
+                    </div>
+                    <div class="queue-reset-container">
+                        <button class="queue-reset-button">Reset</button>
+                    </div>
+                </div>
+            </div>
             <div class="panel singly-linked-list-panel">linked list panel</div>
         </div>
         <script>
