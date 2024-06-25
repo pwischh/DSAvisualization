@@ -1,4 +1,3 @@
-
 class Stack{
     constructor(two){
         this.items = new Array(2);
@@ -80,7 +79,7 @@ class Stack{
         this.items[this.size++] = item;
 
         this.resetVisPosition();
-        let value = two.makeText("Val: " + item, this.two.width/2 + this.valueBuffer, this.two.height/2, {size: this.textSize})
+        let value = this.two.makeText("Val: " + item, this.two.width/2 + this.valueBuffer, this.two.height/2, {size: this.textSize})
         this.squareArr[this.size-1].add(value);
         this.valueBuffer += this.squareSize;
         this.centerVis();
@@ -127,32 +126,47 @@ class Stack{
     }
 }
 
-let visualizationArea = document.querySelector('.stack-vis');
-let two = new Two({fitted: true}).appendTo(visualizationArea);
+const stackVis = document.querySelector('.stack-vis');
+const stackTwo = new Two({fitted: true}).appendTo(stackVis);
+const stackSvg = stackTwo.renderer.domElement;
+stackSvg.setAttribute("width", "100%");
+stackSvg.setAttribute("height", "100%");
 
-let svg = document.querySelector("svg");
-svg.setAttribute("viewbox", "0 0 200 100");
-svg.setAttribute("width", "100%");
-svg.style.overflow = "auto";
+const stack = new Stack(stackTwo);
 
-const stack = new Stack(two);
+const textDuration = 5000;
 
 let inputBox = document.getElementsByClassName("push-input");
+let pushInfo = document.querySelector(".push-info");
 inputBox[0].addEventListener("keyup", function(event){
     if (event.key == "Enter"){
         event.preventDefault();
-        stack.push(this.value);
-        this.value = "";
+        if (stack.size == 16){
+            pushInfo.innerHTML = "Max push limit reached";
+            setTimeout(function(){
+                pushInfo.innerHTML = "";
+            }, textDuration)
+        }
+        else{
+            stack.push(this.value);
+            this.value = "";
+        }
     }
 })
 
 let pushButton = document.getElementsByClassName("push-button");
 pushButton[0].addEventListener("click", function(){
-    stack.push(inputBox[0].value);
-    inputBox[0].value = "";
+    if (stack.size == 16){
+        pushInfo.innerHTML = "Max push limit reached";
+        setTimeout(function(){
+            pushInfo.innerHTML = "";
+        }, textDuration)
+    }
+    else{
+        stack.push(inputBox[0].value);
+        inputBox[0].value = "";
+    }
 })
-
-let textDuration = 5000;
 
 let popButton = document.getElementsByClassName("pop-button");
 let popInfo = document.getElementsByClassName("pop-info");
@@ -172,8 +186,8 @@ peekButton[0].addEventListener("click", function(){
     }, textDuration)
 })
 
-let isEmptyButton = document.getElementsByClassName("isempty-button");
-let isEmptyInfo = document.getElementsByClassName("isempty-info");
+let isEmptyButton = document.getElementsByClassName("stack-isempty-button");
+let isEmptyInfo = document.getElementsByClassName("stack-isempty-info");
 isEmptyButton[0].addEventListener("click", function(){
     let isEmpty = stack.isEmpty() ? "True" : "False";
     isEmptyInfo[0].innerHTML = isEmpty;
@@ -182,19 +196,19 @@ isEmptyButton[0].addEventListener("click", function(){
     }, textDuration)
 })
 
-let resetButton = document.querySelector('.reset-button');
+let resetButton = document.querySelector('.stack-reset-button');
 resetButton.addEventListener("click", function(){
     stack.reset();
 })
 
 let settingsButton = document.querySelector('.settings-panel-toggle');
-let prevWidth = visualizationArea.offsetWidth;
+let prevWidth = stackVis.offsetWidth;
 settingsButton.addEventListener("click", function(){
     if (document.querySelector(".stack-vis").classList.contains("vis-open")){
-        let visWidth = visualizationArea.offsetWidth;
+        let visWidth = stackVis.offsetWidth;
         let widthDiff = (visWidth - prevWidth)/2;
         stack.arrayVis.position.set(stack.arrayVis.position.x + widthDiff, 0);
-        two.update();
+        stackTwo.update();
         prevWidth = visWidth;
     }
 })
