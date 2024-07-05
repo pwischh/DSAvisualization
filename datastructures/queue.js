@@ -154,15 +154,15 @@ class Queue{
 }
 
 const queueVis = document.querySelector('.queue-vis');
-let intervalListener = setInterval(function(){
+let qIntervalListener = setInterval(function(){
     if (queueVis.classList.contains("vis-open")){
-        runScript();
-        clearInterval(intervalListener);
+        qRunScript();
+        clearInterval(qIntervalListener);
     }
 }, 100)
 
 let queue;
-function runScript(){
+function qRunScript(){
     const queueTwo = new Two({fitted: true}).appendTo(queueVis);
 
     const queueSvg = queueTwo.renderer.domElement;
@@ -179,6 +179,7 @@ enqueueInput.addEventListener("keyup", function(event){
         event.preventDefault();
         if (queue.size == 16){
             enqueueInfo.innerHTML = "Max enqueue limit reached";
+            this.value = "";
             setTimeout(function(){
                 enqueueInfo.innerHTML = "";
             }, textDuration)
@@ -195,6 +196,7 @@ let enqueueInfo = document.querySelector('.enqueue-info');
 enqueueButton.addEventListener("click", function(){
     if (queue.size == 16){
         enqueueInfo.innerHTML = "Max enqueue limit reached";
+        enqueueInput.value = "";
         setTimeout(function(){
             enqueueInfo.innerHTML = "";
         }, textDuration)

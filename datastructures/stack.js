@@ -143,6 +143,7 @@ inputBox[0].addEventListener("keyup", function(event){
         event.preventDefault();
         if (stack.size == 16){
             pushInfo.innerHTML = "Max push limit reached";
+            this.value = "";
             setTimeout(function(){
                 pushInfo.innerHTML = "";
             }, textDuration)
@@ -158,6 +159,7 @@ let pushButton = document.getElementsByClassName("push-button");
 pushButton[0].addEventListener("click", function(){
     if (stack.size == 16){
         pushInfo.innerHTML = "Max push limit reached";
+        inputBox[0].value = "";
         setTimeout(function(){
             pushInfo.innerHTML = "";
         }, textDuration)
