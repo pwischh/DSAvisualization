@@ -2,8 +2,8 @@
 <!--ToDo:
     1. Implement panning and zooming (two.js examples) for each visualization. could then remove svg resizing
     2. long-term: beautify UI
-    3. Figure out what to do when there's a bunch of instances of two and a lot of objects
-    4. Animations and hover details on Two objects-->
+    3. Add indices under each viz
+    4. Animations and hover details on Two objects w/ steps explaining code behind the scenes-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +13,8 @@
     <script src="two.min.js"></script>
     <script src="navbarButtons.js" defer></script>
     <script src="datastructures/cell.js" defer></script>
+    <script src="datastructures/singlylinkedlistnode.js" defer></script>
+    <script src="datastructures/doublylinkedlistnode.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,6 +29,7 @@
                     <button data-panel="stack-panel" data-vis="stack-vis">Stack</button>
                     <button data-panel="queue-panel" data-vis="queue-vis">Queue</button>
                     <button data-panel="singly-linked-list-panel" data-vis="singly-linked-list-vis">Singly Linked List</button>
+                    <button data-panel="doubly-linked-list-panel" data-vis="doubly-linked-list-vis">Doubly Linked List</button>
                 </div>
             </div>
             <div class="dropdown">
@@ -60,13 +63,18 @@
     </div>
     <div class="content-container">
         <div class="visualization">
-            <div id="stack" class="stack-vis vis vis-open">
+            <div class="stack-vis vis vis-open">
                 <script src="datastructures/stack.js" defer></script>
             </div>
-            <div id="queue" class="queue-vis vis">
+            <div class="queue-vis vis">
                 <script src="datastructures/queue.js" defer></script>
             </div>
-            <div class="singly-linked-list-vis vis">Linked list</div>
+            <div class="singly-linked-list-vis vis">
+                <script src="datastructures/singlylinkedlist.js" defer></script>
+            </div>
+            <div class="doubly-linked-list-vis vis">
+
+            </div>
         </div>
         <div class="settings-panel-toggle-container">
             <button class="settings-panel-toggle" type="button">
@@ -79,26 +87,26 @@
                 <div class="header-container">
                     <h2>Stack</h2>
                 </div>
-                <div class="stack-panel-content-container">
-                    <div class="push-input-container">
-                        <input type="text" class="push-input" placeholder="Insert value to push" maxlength="5">
-                        <button class="push-button">Push</button>
+                <div class="panel-content-container">
+                    <div class="push-input-container input-container">
+                        <input type="text" class="push-input input" placeholder="Insert value to push" maxlength="5">
+                        <button class="push-button button">Push</button>
                         <p class="push-info info"></p>
                     </div>
-                    <div class="pop-container">
-                        <button class="pop-button">Pop</button>
+                    <div class="pop-container button-container">
+                        <button class="pop-button button">Pop</button>
                         <p class="pop-info info"></p>
                     </div>
-                    <div class="peek-container">
-                        <button class="peek-button">Peek</button>
+                    <div class="peek-container button-container">
+                        <button class="peek-button button">Peek</button>
                         <p class="peek-info info"></p>
                     </div>
-                    <div class="stack-isempty-container">
-                        <button class="stack-isempty-button">isEmpty</button>
+                    <div class="stack-isempty-container button-container">
+                        <button class="stack-isempty-button button">isEmpty</button>
                         <p class="stack-isempty-info info"></p>
                     </div>
-                    <div class="stack-reset-container">
-                        <button class="stack-reset-button">Reset</button>
+                    <div class="stack-reset-container button-container">
+                        <button class="stack-reset-button reset-button button">Reset</button>
                     </div>
                 </div>
             </div>
@@ -106,26 +114,75 @@
                 <div class="header-container">
                     <h2>Queue</h2>
                 </div>
-                <div class="queue-panel-content-container">
-                    <div class="enqueue-input-container">
-                        <input type="text" class="enqueue-input" placeholder="Insert value to enqueue" maxlength="5">
-                        <button class="enqueue-button">Enqueue</button>
+                <div class="panel-content-container">
+                    <div class="enqueue-input-container input-container">
+                        <input type="text" class="enqueue-input input" placeholder="Insert value to enqueue" maxlength="5">
+                        <button class="enqueue-button button">Enqueue</button>
                         <p class="enqueue-info info"></p>
                     </div>
-                    <div class="dequeue-container">
-                        <button class="dequeue-button">Dequeue</button>
+                    <div class="dequeue-container button-container">
+                        <button class="dequeue-button button">Dequeue</button>
                         <p class="dequeue-info info"></p>
                     </div>
-                    <div class="queue-isempty-container">
-                        <button class="queue-isempty-button">isEmpty</button>
+                    <div class="queue-isempty-container button-container">
+                        <button class="queue-isempty-button button">isEmpty</button>
                         <p class="queue-isempty-info info"></p>
                     </div>
-                    <div class="queue-reset-container">
-                        <button class="queue-reset-button">Reset</button>
+                    <div class="queue-reset-container button-container">
+                        <button class="queue-reset-button reset-button button">Reset</button>
                     </div>
                 </div>
             </div>
-            <div class="panel singly-linked-list-panel">linked list panel</div>
+            <div class="panel singly-linked-list-panel">
+                <div class="header-container">
+                    <h2>Singly Linked List</h2>
+                </div>
+                <div class="panel-content-container">
+                    <div class="sll-add-at-tail-container input-container">
+                        <input type="text" class="sll-add-at-tail-input input" placeholder="Insert value to add at tail" maxlength="5">
+                        <button class="sll-add-at-tail-button button">Add at tail</button>
+                        <p class="sll-add-at-tail-info info"></p>
+                    </div>
+                    <div class="sll-add-at-head-container input-container">
+                        <input type="text" class="sll-add-at-head-input input" placeholder="Insert value to add at head" maxlength="5">
+                        <button class="sll-add-at-head-button button">Add at head</button>
+                        <p class="sll-add-at-head-info info"></p>
+                    </div>
+                    <div class="sll-remove-at-container input-container">
+                        <input type="text" class="sll-remove-at-input input" placeholder="Position of node to remove" maxlength="5">
+                        <button class="sll-remove-at-button button">Remove</button>
+                        <p class="sll-remove-at-info info"></p>
+                    </div>
+                    <div class="sll-reset-container button-container">
+                        <button class="sll-reset-button reset-button button">Reset</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel doubly-linked-list-panel">
+                <div class="header-container">
+                    <h2>Doubly Linked List</h2>
+                </div>
+                <div class="panel-content-container">
+                    <div class="dll-add-at-tail-container input-container">
+                        <input type="text" class="dll-add-at-tail-input input" placeholder="Insert value to add at tail" maxlength="5">
+                        <button class="dll-add-at-tail-button button">Add at tail</button>
+                        <p class="dll-add-at-tail-info info"></p>
+                    </div>
+                    <div class="dll-add-at-head-container input-container">
+                        <input type="text" class="dll-add-at-head-input input" placeholder="Insert value to add at head" maxlength="5">
+                        <button class="dll-add-at-head-button button">Add at head</button>
+                        <p class="dll-add-at-head-info info"></p>
+                    </div>
+                    <div class="dll-remove-at-container input-container">
+                        <input type="text" class="dll-remove-at-input input" placeholder="Position of node to remove" maxlength="5">
+                        <button class="dll-remove-at-button button">Remove</button>
+                        <p class="dll-remove-at-info info"></p>
+                    </div>
+                    <div class="dll-reset-container button-container">
+                        <button class="dll-reset-button reset-button button">Reset</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <script>
             document.querySelector(".settings-panel-toggle").addEventListener("click", function(){

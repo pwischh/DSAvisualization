@@ -133,7 +133,7 @@ body{
         }
         .panel-open{
             display: block;
-            padding: 12px 0 0 40px;
+            padding: 12px 0 0 0px;
         }
         .header-container{
             display: flex;
@@ -143,203 +143,56 @@ body{
                 font-weight: bold;
                 color: #22223b;
             }
-        .stack-panel-content-container{
+        .panel-content-container{
+            display: grid;
             height: 25vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            padding-left: 40px;
         }
-            .push-input-container{
+            .button-container{
                 display: flex;
-                justify-content: left;
                 align-items: center;
+                justify-content: left;
+                width: 20vw;
                 height: 5vh;
             }
-                .push-button{
+                .button{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 30px;
                     border: none;
                     border-radius: 15px;
-                    height: 30px;
-                    width: 50px;
                     color: #22223b;
                     font-weight: bold;
+                    padding-left: 10px;
+                    padding-right: 10px;
                 }
-                .push-button:hover{
+                .reset-button{
+                    color: #6b1105;
+                }
+                .button:hover{
                     cursor: pointer;
                     background-color: rgba(255, 255, 255, 0.6);
                 }
-                .push-input{
-                    height: 30px;
+            .input-container{
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                width: 25vw;
+                height: 5vh;
+            }
+                .input{
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
                     border-radius: 15px;
                     border: none;
+                    height: 30px;
                     padding-left: 10px;
                     margin-right: 10px;
-                }
-            .pop-container{
-                display: flex;
-                align-items: center;
-                justify-content: left;
-                width: 20vw;
-                height: 5vh;
-            }
-                .pop-button{
-                    border: none;
-                    border-radius: 15px;
-                    height: 30px;
-                    width: 40px;
-                    color: #22223b;
-                    font-weight: bold; 
-                }
-                .pop-button:hover{
-                    cursor: pointer;
-                    background-color: rgba(255, 255, 255, 0.6);
-                }
-            .peek-container{
-                display: flex;
-                align-items: center;
-                justify-content: left;
-                width: 20vw;
-                height: 5vh;
-            }
-                .peek-button{
-                    border: none;
-                    border-radius: 15px;
-                    height: 30px;
-                    width: 50px;
-                    color: #22223b;
-                    font-weight: bold;
-                }
-                .peek-button:hover{
-                    cursor: pointer;
-                    background-color: rgba(255, 255, 255, 0.6);
-                }
-            .stack-isempty-container{
-                display: flex;
-                align-items: center;
-                justify-content: left;
-                width: 20vw;
-                height: 5vh;
-            }
-                .stack-isempty-button{
-                    border: none;
-                    border-radius: 15px;
-                    height: 30px;
-                    width: 70px;
-                    color: #22223b;
-                    font-weight: bold;
-                }
-                .stack-isempty-button:hover{
-                    cursor: pointer;
-                    background-color: rgba(255, 255, 255, 0.6);
-                }
-            .stack-reset-container{
-                display: flex;
-                align-items: center;
-                justify-content: left;
-                width: 20vw;
-                height: 5vh;
-            }
-                .stack-reset-button{
-                    border: none;
-                    border-radius: 15px;
-                    height: 30px;
-                    width: 60px;
-                    color: #6b1105;
-                    font-weight: bold;
-                }
-                .stack-reset-button:hover{
-                    cursor: pointer;
-                    background-color: rgba(255, 255, 255, 0.6);
                 }
             .info{
                 color: #22223b;
                 font-weight: bold;
                 margin-left: 10px;
             }
-        .queue-panel-content-container{
-            height: 25vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-            .enqueue-input-container{
-                display: flex;
-                justify-content: left;
-                align-items: center;
-                height: 5vh;
-            }
-                .enqueue-button{
-                    border: none;
-                    border-radius: 15px;
-                    height: 30px;
-                    width: 75px;
-                    color: #22223b;
-                    font-weight: bold;
-                }
-                .enqueue-button:hover{
-                    cursor: pointer;
-                    background-color: rgba(255, 255, 255, 0.6);
-                }
-                .enqueue-input{
-                    height: 30px;
-                    border-radius: 15px;
-                    border: none;
-                    padding-left: 10px;
-                    margin-right: 10px;
-                }
-            .dequeue-container{
-                display: flex;
-                align-items: center;
-                justify-content: left;
-                width: 20vw;
-                height: 5vh;
-            }
-                .dequeue-button{
-                    border: none;
-                    border-radius: 15px;
-                    height: 30px;
-                    width: 75px;
-                    color: #22223b;
-                    font-weight: bold; 
-                }
-                .dequeue-button:hover{
-                    cursor: pointer;
-                    background-color: rgba(255, 255, 255, 0.6);
-                }
-            .queue-isempty-container{
-                display: flex;
-                align-items: center;
-                justify-content: left;
-                width: 20vw;
-                height: 5vh;
-            }
-                .queue-isempty-button{
-                    border: none;
-                    border-radius: 15px;
-                    height: 30px;
-                    width: 70px;
-                    color: #22223b;
-                    font-weight: bold;
-                }
-                .queue-isempty-button:hover{
-                    cursor: pointer;
-                    background-color: rgba(255, 255, 255, 0.6);
-                }
-            .queue-reset-container{
-                display: flex;
-                align-items: center;
-                justify-content: left;
-                width: 20vw;
-                height: 5vh;
-            }
-                .queue-reset-button{
-                    border: none;
-                    border-radius: 15px;
-                    height: 30px;
-                    width: 60px;
-                    color: #6b1105;
-                    font-weight: bold;
-                }
-                .queue-reset-button:hover{
-                    cursor: pointer;
-                    background-color: rgba(255, 255, 255, 0.6);
-                }
