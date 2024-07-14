@@ -16,7 +16,7 @@ body{
     z-index: 1;
 }
     .badge{
-        margin: 10px 0 10px 15px;
+        margin: 10px 15px 10px 15px;
         min-width: 10vw;
         color: #22223b;
         display: flex;
@@ -28,8 +28,8 @@ body{
     }
     .navbar-buttons{
         display: flex;
-        justify-content: space-around;
-        min-width: 30vw;
+        justify-content: left;
+        min-width: 25vw;
     }
     .navbar-button-container{
         padding: 10px 0 10px 0;
@@ -40,6 +40,8 @@ body{
         color: white;
         cursor: pointer;
         border-radius: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     .dropdown-content {
         display: none;

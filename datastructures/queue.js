@@ -229,6 +229,7 @@ qIsEmptyButton[0].addEventListener("click", function(){
 let qResetButton = document.querySelector('.queue-reset-button');
 qResetButton.addEventListener("click", function(){
     queue.reset();
+    enqueueInput.value = "";
 })
 
 settingsButton.addEventListener("click", function(){

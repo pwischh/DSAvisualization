@@ -13,8 +13,8 @@
     <script src="two.min.js"></script>
     <script src="navbarButtons.js" defer></script>
     <script src="datastructures/cell.js" defer></script>
-    <script src="datastructures/singlylinkedlistnode.js" defer></script>
-    <script src="datastructures/doublylinkedlistnode.js" defer></script>
+    <script src="datastructures/singlylinkedlistnodeviz.js" defer></script>
+    <script src="datastructures/doublylinkedlistnodeviz.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,10 +26,11 @@
                     <button>Data Structures</button>
                 </div>
                 <div class="dropdown-content">
-                    <button data-panel="stack-panel" data-vis="stack-vis">Stack</button>
-                    <button data-panel="queue-panel" data-vis="queue-vis">Queue</button>
+                    <button data-panel="stack-panel" data-vis="stack-vis">Array Stack</button>
+                    <button data-panel="queue-panel" data-vis="queue-vis">Array Queue</button>
                     <button data-panel="singly-linked-list-panel" data-vis="singly-linked-list-vis">Singly Linked List</button>
                     <button data-panel="doubly-linked-list-panel" data-vis="doubly-linked-list-vis">Doubly Linked List</button>
+                    <button data-panel="binary-tree-panel" data-vis="binary-tree-vis">Binary Tree</button>
                 </div>
             </div>
             <div class="dropdown">
@@ -37,8 +38,7 @@
                     <button>Sorting</button>
                 </div>
                 <div class="dropdown-content">
-                    <button>link 3</button>
-                    <button>link 4</button>
+                    <button>Coming Soon</button>
                 </div>
             </div>
             <div class="dropdown">
@@ -46,8 +46,7 @@
                     <button>Graphs</button>
                 </div>
                 <div class="dropdown-content">
-                    <button>link 5</button>
-                    <button>link 6</button>
+                    <button>Coming Soon</button>
                 </div>
             </div>
             <div class="dropdown">
@@ -55,8 +54,7 @@
                     <button>Misc</button>
                 </div>
                 <div class="dropdown-content">
-                    <button>link 7</button>
-                    <button>link 8</button>
+                    <button>Coming Soon</button>
                 </div>
             </div>
         </div>
@@ -73,6 +71,9 @@
                 <script src="datastructures/singlylinkedlist.js" defer></script>
             </div>
             <div class="doubly-linked-list-vis vis">
+                <script src="datastructures/doublylinkedlist.js" defer></script>
+            </div>
+            <div class="binary-tree-vis">
 
             </div>
         </div>
@@ -85,7 +86,7 @@
         <div class="settings-panel">
             <div class="panel stack-panel panel-open">
                 <div class="header-container">
-                    <h2>Stack</h2>
+                    <h2>Array Stack</h2>
                 </div>
                 <div class="panel-content-container">
                     <div class="push-input-container input-container">
@@ -112,7 +113,7 @@
             </div>
             <div class="panel queue-panel">
                 <div class="header-container">
-                    <h2>Queue</h2>
+                    <h2>Array Queue</h2>
                 </div>
                 <div class="panel-content-container">
                     <div class="enqueue-input-container input-container">
@@ -181,6 +182,14 @@
                     <div class="dll-reset-container button-container">
                         <button class="dll-reset-button reset-button button">Reset</button>
                     </div>
+                </div>
+            </div>
+            <div class="panel binary-tree-panel">
+                <div class="header-container">
+                    <h2>Binary Tree</h2>
+                </div>
+                <div class="panel-content-container">
+                    
                 </div>
             </div>
         </div>

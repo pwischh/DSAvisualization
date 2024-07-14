@@ -201,6 +201,7 @@ isEmptyButton[0].addEventListener("click", function(){
 let resetButton = document.querySelector('.stack-reset-button');
 resetButton.addEventListener("click", function(){
     stack.reset();
+    inputBox[0].value = "";
 })
 
 let settingsButton = document.querySelector('.settings-panel-toggle');

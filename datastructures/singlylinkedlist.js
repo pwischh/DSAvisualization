@@ -1,13 +1,21 @@
-class Node{
+class SinglyLinkedListNode{
+    #data;
+
     constructor(data){
-        this.data = data;
+        this.#data = data;
         this.next = null;
+    }
+
+    getData(){
+        return this.#data;
     }
 }
 
 class SinglyLinkedList{
+    #length;
+
     constructor(two){
-        this._length = 0;
+        this.#length = 0;
         this.head = null;
 
         this.two = two
@@ -19,18 +27,18 @@ class SinglyLinkedList{
     }
 
     size(){
-        return this._length;
+        return this.#length;
     }
 
     addAtTail(value){
-        let node = new Node(value);
+        let node = new SinglyLinkedListNode(value);
         let n = this.head;
 
         if (n == null){
             this.head = node;
-            this._length++;
+            this.#length++;
 
-            this.makeNodeTail(value);
+            this.#makeNodeTail(value);
             this.tailBuffer += this.nodeSize;  
             return node;
         }
@@ -39,22 +47,22 @@ class SinglyLinkedList{
             n = n.next;
         }
         n.next = node;
-        this._length++;
+        this.#length++;
 
-        this.makeNodeTail(value);
+        this.#makeNodeTail(value);
         this.tailBuffer += this.nodeSize;
     
         return node;
     }
 
     addAtHead(value){
-        let node = new Node(value);
+        let node = new SinglyLinkedListNode(value);
         node.next = this.head;
         this.head = node;
-        this._length++;
+        this.#length++;
 
         this.headBuffer -= this.nodeSize;
-        this.makeNodeHead(value);
+        this.#makeNodeHead(value);
 
         return node;
     }
@@ -69,7 +77,7 @@ class SinglyLinkedList{
         this.nodeVis.remove(this.nodeArr[position].group);
         this.nodeArr.splice(position, 1);
 
-        if (this._length == 0 || position < 0 || position > this._length){
+        if (this.#length == 0 || position < 0 || position > this.#length){
             return -1;
         }
 
@@ -77,11 +85,11 @@ class SinglyLinkedList{
             this.head = n.next;
             deletedNode = n;
             n = null;
-            this._length--;
+            this.#length--;
             
-            if (this._length > 0) this.nodeArr[0].toggleHead();
-            this.centerVisFromRemoval(position);
-
+            if (this.#length > 0) this.nodeArr[0].toggleHead();
+            this.#centerVisFromRemoval(position);
+            
             return deletedNode;
         }
 
@@ -95,15 +103,15 @@ class SinglyLinkedList{
         beforeNodeToDelete.next = nodeToDelete.next;
         deletedNode = nodeToDelete;
         nodeToDelete = null;
-        this._length--;
-        this.centerVisFromRemoval(position);
+        this.#length--;
+        this.#centerVisFromRemoval(position);
 
         return deletedNode;
     }
 
     reset(){
         this.head = null;
-        this._length = 0;
+        this.#length = 0;
         this.nodeVis.remove();
         this.nodeVis = this.two.makeGroup();
         this.nodeArr = [];
@@ -112,18 +120,18 @@ class SinglyLinkedList{
         this.two.update();
     }
 
-    centerVisFromHead(){
+    #centerVisFromHead(){
         this.nodeVis.position.set(this.nodeVis.position.x + this.nodeSize/2, 0);
         this.two.update();
     }
 
-    centerVisFromTail(){
+    #centerVisFromTail(){
         this.nodeVis.position.set(this.nodeVis.position.x - this.nodeSize/2, 0);
         this.two.update();
     }
 
-    centerVisFromRemoval(position){        
-        if (this._length == 0){
+    #centerVisFromRemoval(position){        
+        if (this.#length == 0){
             this.headBuffer = 0;
             this.tailBuffer = 0;
             this.two.update();
@@ -141,13 +149,13 @@ class SinglyLinkedList{
         this.two.update();
     }
 
-    makeNodeHead(value){
-        let node = new SinglyLinkedListNode(this.two, this.headBuffer, value);
+    #makeNodeHead(value){
+        let node = new SinglyLinkedListNodeViz(this.two, this.headBuffer, value);
         this.nodeArr.unshift(node);
         this.nodeVis.add(node.group);
         this.nodeArr[0].toggleHead();
 
-        if (this._length == 1){
+        if (this.#length == 1){
             this.nodeVis.position.set((this.nodeSize/2 + this.nodeArr[0].squareSize/2), 0);
             this.two.update();
             return;
@@ -155,22 +163,22 @@ class SinglyLinkedList{
 
         this.nodeArr[1].toggleHead();
         
-       this.centerVisFromHead();
+       this.#centerVisFromHead();
     }
 
-    makeNodeTail(value){
-        let node = new SinglyLinkedListNode(this.two, this.tailBuffer, value);
+    #makeNodeTail(value){
+        let node = new SinglyLinkedListNodeViz(this.two, this.tailBuffer, value);
         this.nodeArr.push(node);
         this.nodeVis.add(node.group);
 
-        if (this._length == 1) {
+        if (this.#length == 1) {
             this.nodeArr[0].toggleHead();
             this.nodeVis.position.set((-this.nodeSize/2 + this.nodeArr[0].squareSize/2), 0);
             this.two.update();
             return;
         }
 
-        this.centerVisFromTail();
+        this.#centerVisFromTail();
     }
 }
 
@@ -269,7 +277,7 @@ const sllRemoveAtInfo = document.querySelector('.sll-remove-at-info');
 sllRemoveAtInput.addEventListener("keyup", function(event){
     if (event.key == "Enter"){
         event.preventDefault();
-        if (this.value < 0 || this.value >= SLL.size()){
+        if (this.value < 0 || this.value >= SLL.size() || isNaN(this.value)){
             sllRemoveAtInfo.innerHTML = "Invalid position";
             this.value = "";
             setTimeout(function(){
@@ -289,7 +297,7 @@ sllRemoveAtInput.addEventListener("keyup", function(event){
 
 const sllRemoveAtButton = document.querySelector('.sll-remove-at-button');
 sllRemoveAtButton.addEventListener("click", function(){
-    if (this.value < 0 || this.value >= SLL.size()){
+    if (sllRemoveAtInput.value < 0 || sllRemoveAtInput.value >= SLL.size() || isNaN(sllRemoveAtInput.value)){
         sllRemoveAtInfo.innerHTML = "Invalid position";
         sllRemoveAtInput.value = "";
         setTimeout(function(){
@@ -297,8 +305,8 @@ sllRemoveAtButton.addEventListener("click", function(){
         }, textDuration)
     }
     else{
-        SLL.removeAt(this.value);
-        sllRemoveAtInfo.innerHTML = "Node removed at position " + this.value.toString();
+        SLL.removeAt(sllRemoveAtInput.value);
+        sllRemoveAtInfo.innerHTML = "Node removed at position " + sllRemoveAtInput.value.toString();
         setTimeout(function(){
             sllRemoveAtInfo.innerHTML = "";
         }, textDuration)
@@ -309,4 +317,7 @@ sllRemoveAtButton.addEventListener("click", function(){
 const sllResetButton = document.querySelector('.sll-reset-button');
 sllResetButton.addEventListener("click", function(){
     SLL.reset();
+    sllAddAtHeadInput.value = "";
+    sllAddAtTailInput.value = "";
+    sllRemoveAtInput.value = "";
 })
