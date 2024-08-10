@@ -113,8 +113,8 @@ class Queue{
         for (let i = 0; i<this.items.length; i++){ 
             this.newCell();
         }
-        this.headText = this.two.makeText("Head", this.two.width/2, this.two.height/2 - (this.cellArr[0].squareSize/4), {size: 12, fill: "green"});
-        this.tailText = this.two.makeText("Tail", this.two.width/2, this.two.height/2 + (this.cellArr[0].squareSize/4), {size: 12, fill: "red"});
+        this.headText = this.two.makeText("Head", this.two.width/2, this.two.height/2 - (this.cellArr[0].squareSize/4), {size: 12, fill: "white"});
+        this.tailText = this.two.makeText("Tail", this.two.width/2, this.two.height/2 + (this.cellArr[0].squareSize/4), {size: 12, fill: "white"});
         this.arrayVis.add(this.headText);
         this.arrayVis.add(this.tailText);
         this.centerVis();
@@ -130,8 +130,8 @@ class Queue{
     newHeadTail(){
         this.arrayVis.remove(this.tailText);
         this.arrayVis.remove(this.headText);
-        this.tailText = this.two.makeText("Tail", this.cellArr[this.size+1].square.position.x, this.tailText.position.y, {size: 12, fill: "red"});
-        this.headText = this.two.makeText("Head", this.cellArr[0].square.position.x, this.headText.position.y, {size: 12, fill: "green"});
+        this.tailText = this.two.makeText("Tail", this.cellArr[this.size+1].square.position.x, this.tailText.position.y, {size: 12, fill: "white"});
+        this.headText = this.two.makeText("Head", this.cellArr[0].square.position.x, this.headText.position.y, {size: 12, fill: "white"});
         this.arrayVis.add(this.tailText);
         this.arrayVis.add(this.headText);
     }
@@ -170,7 +170,6 @@ function qRunScript(){
     queueSvg.setAttribute("height", "100%");
 
     queue = new Queue(queueTwo);
-    prevWidth = queueVis.offsetWidth;
 }
 
 let enqueueInput = document.querySelector('.enqueue-input');
@@ -230,14 +229,4 @@ let qResetButton = document.querySelector('.queue-reset-button');
 qResetButton.addEventListener("click", function(){
     queue.reset();
     enqueueInput.value = "";
-})
-
-settingsButton.addEventListener("click", function(){
-    if (document.querySelector(".queue-vis").classList.contains("vis-open")){
-        let visWidth = queueVis.offsetWidth;
-        let widthDiff = (visWidth - prevWidth)/2;
-        queue.arrayVis.position.set(queue.arrayVis.position.x + widthDiff, 0);
-        queue.two.update();
-        prevWidth = visWidth;
-    }
 })

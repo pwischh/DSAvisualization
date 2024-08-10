@@ -1,9 +1,4 @@
 <!--https://pwischh.github.io/DSAvisualization-->
-<!--ToDo:
-    1. Implement panning and zooming (two.js examples) for each visualization. could then remove svg resizing
-    2. long-term: beautify UI
-    3. Add indices under each viz
-    4. Animations and hover details on Two objects w/ steps explaining code behind the scenes-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +7,12 @@
     <title>DSA Visualization</title>
     <script src="two.min.js"></script>
     <script src="navbarButtons.js" defer></script>
+    <script src="datastructures/valueentry.js" defer></script>
     <script src="datastructures/cell.js" defer></script>
     <script src="datastructures/singlylinkedlistnodeviz.js" defer></script>
     <script src="datastructures/doublylinkedlistnodeviz.js" defer></script>
+    <script src="datastructures/treenodeviz.js" defer></script>
+    <script src="datastructures/treenodeanim.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,7 +28,7 @@
                     <button data-panel="queue-panel" data-vis="queue-vis">Array Queue</button>
                     <button data-panel="singly-linked-list-panel" data-vis="singly-linked-list-vis">Singly Linked List</button>
                     <button data-panel="doubly-linked-list-panel" data-vis="doubly-linked-list-vis">Doubly Linked List</button>
-                    <button data-panel="binary-tree-panel" data-vis="binary-tree-vis">Binary Tree</button>
+                    <button data-panel="binary-search-tree-panel" data-vis="binary-search-tree-vis">Binary Search Tree</button>
                 </div>
             </div>
             <div class="dropdown">
@@ -73,14 +71,14 @@
             <div class="doubly-linked-list-vis vis">
                 <script src="datastructures/doublylinkedlist.js" defer></script>
             </div>
-            <div class="binary-tree-vis">
-
+            <div class="binary-search-tree-vis vis">
+                <script src="datastructures/binarysearchtree.js" defer></script>
             </div>
         </div>
         <div class="settings-panel-toggle-container">
             <button class="settings-panel-toggle" type="button">
-                <span class="sp-icon-open">&lt</span>
-                <span class="sp-icon-close">&gt</span>
+                <span class="sp-icon-open">&#11120</span>
+                <span class="sp-icon-close">&#11122</span>
             </button>
         </div>
         <div class="settings-panel">
@@ -184,12 +182,32 @@
                     </div>
                 </div>
             </div>
-            <div class="panel binary-tree-panel">
+            <div class="panel binary-search-tree-panel">
                 <div class="header-container">
-                    <h2>Binary Tree</h2>
+                    <h2>Binary Search Tree</h2>
                 </div>
                 <div class="panel-content-container">
-                    
+                    <div class="input-container">
+                        <input type="number" class="bst-put-input input" placeholder="Insert integer to put">
+                        <button class="bst-put-button button">Put</button>
+                        <p class="bst-put-info info"></p>
+                    </div>
+                    <div class="input-container">
+                        <input type="number" class="bst-delete-input input" placeholder="Insert integer to delete">
+                        <button class="bst-delete-button button">Delete</button>
+                    </div>
+                    <div class="input-container">
+                        <input type="number" class="bst-search-input input" placeholder="Insert integer to search for">
+                        <button class="bst-search-button button">Search</button>
+                        <p class="bst-search-info info"></p>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" class="bst-slider slider" min="0" max="150" value="75" step="25">
+                        <p class="slider-header">Animation Speed</p>
+                      </div>
+                    <div class="button-container">
+                        <button class="bst-reset-button reset-button button">Reset</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -200,8 +200,6 @@ function sllrunScript(){
     SLLsvg.setAttribute("height", "100%");
 
     SLL = new SinglyLinkedList(SLLtwo);
-
-    prevwidth = SLLVis.offsetWidth;
 }
 
 const sllAddAtTailInput = document.querySelector('.sll-add-at-tail-input')

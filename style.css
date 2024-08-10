@@ -4,12 +4,13 @@
    font-weight: normal;
 }
 body{
-    background-color: #f2e9e4;
+    background: rgb(66,66,66);
+    background: linear-gradient(0deg, rgba(66,66,66,1) 0%, rgba(40,40,40,1) 100%);
     margin: 0;
     padding: 0;
 }
 .navbar{
-    background-color: #4a4e69;
+    background-color: #3f3f3f;
     min-width: 100vh;
     min-height: 5vh;
     display: flex;
@@ -18,11 +19,11 @@ body{
     .badge{
         margin: 10px 15px 10px 15px;
         min-width: 10vw;
-        color: #22223b;
+        color: white;
         display: flex;
         justify-content: space-around;
         align-items: center;
-        background-color: white;
+        background-color: #fc815b;
         border-radius: 10px;
         user-select: none;
     }
@@ -51,6 +52,7 @@ body{
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 2;
         border-radius: 5px;
+        overflow: hidden;
     }
     .dropdown-content button{
         color: white;
@@ -58,6 +60,7 @@ body{
         display: block;
         font-size: 13px;
         width: 160px;
+        height: 0%;
         text-align: left;
     }
     .dropdown-content button:hover{
@@ -93,30 +96,30 @@ body{
     .settings-panel-toggle-container{
         display: flex;
         min-height: 95vh;
-        width: 40px;
-        align-items: center;
+        width: 45px;
     }
     .settings-panel-toggle{
-        width: 40px;
+        display: flex;
         height: 40px;
         flex-shrink: 0;
-        display: grid;
-        place-items: center;
-        border-radius: 5px 0 0 5px;
         border: none;
         outline: none;
-        background-color: #c9ada7;
+        background: none;
         cursor: pointer;
         color: white;
+        align-items: center;
+        justify-content: center;
+        font-size: 35px;
     }
     .settings-panel-toggle:hover{
-        color: black;
+        color: #fc815b;
     }
     .sp-icon-open{
         display: none;
     }
     .settings-panel-closed .settings-panel{
-        display: none;
+        width: 0vw;
+        transition: width, 0.5s;
     }
     .settings-panel-closed .sp-icon-open{
         display: initial;
@@ -127,8 +130,10 @@ body{
     .settings-panel{
         display: initial;
         width: 30vw;
+        transition: width, 0.5s;
+        overflow: hidden;
         flex-shrink: 0;
-        background-color: #c9ada7;
+        background-color: #505050;
     }
         .panel{
             display: none;
@@ -137,17 +142,16 @@ body{
             display: block;
             padding: 12px 0 0 0px;
         }
-        .header-container{
-            display: flex;
-            justify-content: center;
+        .header-container h2{
+            font-weight: bold;
+            color: white;
+            white-space: nowrap;
+            width: 30vw;
+            text-align: center;
         }
-            .header-container h2{
-                font-weight: bold;
-                color: #22223b;
-            }
         .panel-content-container{
             display: grid;
-            height: 25vh;
+            height: 30vh;
             padding-left: 40px;
         }
             .button-container{
@@ -164,17 +168,22 @@ body{
                     height: 30px;
                     border: none;
                     border-radius: 15px;
-                    color: #22223b;
+                    color: black;
+                    background-color: white;
                     font-weight: bold;
                     padding-left: 10px;
                     padding-right: 10px;
                 }
                 .reset-button{
-                    color: #6b1105;
+                    color: #961908;
                 }
                 .button:hover{
                     cursor: pointer;
-                    background-color: rgba(255, 255, 255, 0.6);
+                    background-color: #fc815b;
+                    color: white;
+                }
+                .button:disabled{
+                    background-color: rgba(155, 155, 155, 0.6);
                 }
             .input-container{
                 display: flex;
@@ -189,12 +198,57 @@ body{
                     align-items: center;
                     border-radius: 15px;
                     border: none;
+                    font-size: 12px;
                     height: 30px;
                     padding-left: 10px;
                     margin-right: 10px;
                 }
+                .input:hover{
+                    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.3);
+                }
+                .input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+            .slider-container{
+               display: flex;
+               align-items: center;
+               justify-content: left;
+               width: 15vw;
+               height: 2vw;
+            }
+                .slider-container p{
+                    width: 10vw;
+                    color: white;
+                    font-weight: bold;
+                    margin-left: 10px;
+                }
+                .slider{
+                    -webkit-appearance: none; 
+                    appearance: none;
+                    width: 10vw; 
+                    height: 10px; 
+                    border-radius: 5px;
+                    background: white;
+                    outline: none; 
+                }
+                .slider::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 18px;
+                    height: 18px;
+                    border-radius: 50%; 
+                    background: #fc815b;
+                    cursor: pointer;
+                  }
+                .slider:hover{
+                    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.3);
+                }
+                .slider::-webkit-slider-thumb:hover{
+                    background-color: #e27453;
+                }
             .info{
-                color: #22223b;
+                color: white;
                 font-weight: bold;
                 margin-left: 10px;
             }

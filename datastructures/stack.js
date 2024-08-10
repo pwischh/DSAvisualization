@@ -9,7 +9,7 @@ class Stack{
         this.valueBuffer = 0; //same but with value text
 
         this.squareSize = 70; //width and height of squares
-        this.textSize = 12; //size of text in each box
+        this.textSize = 15; //size of text in each box
 
         this.arrayVis = this.two.makeGroup(); //group for the entire array
         this.squareArr = []; //used to easily access each individual box in the array
@@ -17,6 +17,9 @@ class Stack{
         for (let i = 0; i<this.items.length; i++){ //creates array of squares and sets buffer
             let valueBox = this.two.makeGroup(); //make a group for each box in array
             let square = this.two.makeRectangle((this.two.width/2)+this.squareBuffer, this.two.height/2, this.squareSize, this.squareSize);
+            square.fill = "#fc815b";
+            square.stroke = "#ff4f19";
+            square.linewidth = 3;
             valueBox.add(square);
             this.squareArr.push(valueBox);
             this.arrayVis.add(valueBox);
@@ -43,6 +46,9 @@ class Stack{
             
             let valueBox = this.two.makeGroup();
             let square = this.two.makeRectangle((this.two.width/2)+this.squareBuffer, this.two.height/2, this.squareSize, this.squareSize);
+            square.fill = "#fc815b";
+            square.stroke = "#ff4f19";
+            square.linewidth = 3;
             valueBox.add(square);
             this.squareArr.push(valueBox);
             this.arrayVis.add(valueBox);
@@ -79,7 +85,7 @@ class Stack{
         this.items[this.size++] = item;
 
         this.resetVisPosition();
-        let value = this.two.makeText("Val: " + item, this.two.width/2 + this.valueBuffer, this.two.height/2, {size: this.textSize})
+        let value = this.two.makeText(item, this.two.width/2 + this.valueBuffer, this.two.height/2, {size: this.textSize, fill: "white"})
         this.squareArr[this.size-1].add(value);
         this.valueBuffer += this.squareSize;
         this.centerVis();
@@ -117,6 +123,9 @@ class Stack{
         for (let i = 0; i<this.items.length; i++){ 
             let valueBox = this.two.makeGroup();
             let square = this.two.makeRectangle((this.two.width/2)+this.squareBuffer, this.two.height/2, this.squareSize, this.squareSize);
+            square.fill = "#fc815b";
+            square.stroke = "#ff4f19";
+            square.linewidth = 3;
             valueBox.add(square);
             this.squareArr.push(valueBox);
             this.arrayVis.add(valueBox);
@@ -202,16 +211,4 @@ let resetButton = document.querySelector('.stack-reset-button');
 resetButton.addEventListener("click", function(){
     stack.reset();
     inputBox[0].value = "";
-})
-
-let settingsButton = document.querySelector('.settings-panel-toggle');
-let prevWidth = stackVis.offsetWidth;
-settingsButton.addEventListener("click", function(){
-    if (document.querySelector(".stack-vis").classList.contains("vis-open")){
-        let visWidth = stackVis.offsetWidth;
-        let widthDiff = (visWidth - prevWidth)/2;
-        stack.arrayVis.position.set(stack.arrayVis.position.x + widthDiff, 0);
-        stackTwo.update();
-        prevWidth = visWidth;
-    }
 })

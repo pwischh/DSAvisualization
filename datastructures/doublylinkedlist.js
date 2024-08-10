@@ -217,7 +217,6 @@ function dllrunScript(){
     DLLsvg.setAttribute("height", "100%");
 
     DLL = new DoublyLinkedList(DLLTwo);
-    prevWidth = DLLVis.offsetWidth;
 }
 
 const dllAddAtTailInput = document.querySelector('.dll-add-at-tail-input')
